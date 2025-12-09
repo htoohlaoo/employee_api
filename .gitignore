@@ -1,0 +1,99 @@
+# =====================
+# .NET Build Folders
+# =====================
+bin/
+obj/
+out/
+publish/
+
+# =====================
+# Visual Studio / Rider / JetBrains
+# =====================
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# =====================
+# .NET Core / ASP.NET Core
+# =====================
+*.dll
+*.exe
+*.pdb
+*.app
+*.cache
+*.ilk
+*.iobj
+*.idb
+*.ipch
+*.log
+*.DS_Store
+*.dbmdl
+*.dotCover
+
+# =====================
+# NuGet Packages
+# =====================
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# =====================
+# EF Core Migrations
+# =====================
+# Keep migrations in source control. Ignore snapshot files if desired:
+*.Snapshot.cs
+
+# =====================
+# User and Secrets Files
+# =====================
+local.settings.json
+appsettings.*.json.user
+secrets.json
+
+# =====================
+# Node / Front-end (if any)
+# =====================
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# =====================
+# Docker
+# =====================
+docker-compose.override.yml
+**/Dockerfile.*
+**/docker-compose.*.yml
+
+# =====================
+# CI/CD
+# =====================
+# Optional: ignore build artifacts from CI/CD
+ci-artifacts/
+logs/
+*.log
+
+# =====================
+# macOS & Windows
+# =====================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# =====================
+# Test / Coverage Files
+# =====================
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+*.testsettings
+*.vsmdi
+*.ncrunch*
+*.userprefs
