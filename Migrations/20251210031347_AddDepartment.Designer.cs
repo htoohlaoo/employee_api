@@ -3,6 +3,7 @@ using System;
 using DemoAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DemoAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251210031347_AddDepartment")]
+    partial class AddDepartment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,18 +35,13 @@ namespace DemoAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid?>("HeadId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HeadId");
-
-                    b.ToTable("Departments");
+                    b.ToTable("Department");
                 });
 
             modelBuilder.Entity("DemoAPI.Models.Employee", b =>
@@ -54,6 +52,9 @@ namespace DemoAPI.Migrations
 
                     b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("date");
+
+                    b.Property<Guid>("DepartmentId")
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("DepartmenttId")
                         .HasColumnType("uuid");
@@ -78,27 +79,17 @@ namespace DemoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmenttId");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("DemoAPI.Models.Department", b =>
-                {
-                    b.HasOne("DemoAPI.Models.Employee", "Head")
-                        .WithMany()
-                        .HasForeignKey("HeadId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.Navigation("Head");
                 });
 
             modelBuilder.Entity("DemoAPI.Models.Employee", b =>
                 {
                     b.HasOne("DemoAPI.Models.Department", "Department")
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmenttId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Department");

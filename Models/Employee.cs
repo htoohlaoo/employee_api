@@ -8,7 +8,9 @@
         public DateOnly DateOfBirth { get; set; }
         public DateOnly StartDate {  get; set; }
         public decimal Salary { get; set; }
-        public string Position {  get; set; }
+        public string Position { get; set; }
+        public Guid DepartmenttId { get; set; }
+        public Department Department { get; set; }
 
     }
 }
